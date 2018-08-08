@@ -13,6 +13,7 @@ export class HomePage {
   textDataArray = [];
   roomSize = {x: 0, y: 0};
   startPosition = {x: 0, y: 0};
+  dirtSpotTotal = 0;
   dirtSpots: Array<Object> = [];
   movementInstructions = [];
   currentPosition = {x: 0, y: 0};
@@ -55,7 +56,7 @@ export class HomePage {
     this.haveCleaned = true;
     this.makeMovements();
     this.endPosition = this.currentPosition;
-    this.printDescription = 'The hoover started at the x: ' + this.startPosition.x + ' y: ' + this.startPosition.y + ' position. It made ' + this.movementCount + ' movements and bumped into a wall ' + (this.movementInstructions.length - this.movementCount) + ' times. It and cleaned ' + this.dirtCleanedCount + ' dirty spot(s), and ended at the x: ' + this.endPosition.x + ' y: ' + this.endPosition.y + ' position.';
+    this.printDescription = 'The hoover started at the x: ' + this.startPosition.x + ' y: ' + this.startPosition.y + ' position. It made ' + this.movementCount + ' successful movements and bumped into a wall ' + (this.movementInstructions.length - this.movementCount) + ' times. It cleaned ' + this.dirtCleanedCount + '/' + this.dirtSpotTotal + ' dirty spot(s), and ended at the x: ' + this.endPosition.x + ' y: ' + this.endPosition.y + ' position.';
   }
 
   /* 
@@ -82,7 +83,8 @@ export class HomePage {
         dirtSpot.y = parseInt(dirtSpotArray[1]);
         this.dirtSpots.push(dirtSpot);
       }
-    }
+    };
+    this.dirtSpotTotal = _.clone(this.dirtSpots).length;
   }
 
   /* 
