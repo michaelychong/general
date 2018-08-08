@@ -1,4 +1,10 @@
 # Hoover Project
+## Description
+```
+This is a Hoover review app. Given room dimensions, starting coordinates, dirt spot coordinates, and a random set of directions this app will return exactly how successful our hoover was in eliminating the mess.
+
+I used an Ionic framework with the goal of scalability, cross mobile-platform support, and hope of adding in UI into the application at a later point. These considerations for expansion are the reason for some variable artifacts that aren't entirely necessary for the 2 lin output requested in the coding prompt. At this time, the app supports file upload and repeated cleaning simulations.
+```
 ## Command Line Prompts
 ```
 # Get latest code snapshot
@@ -11,11 +17,6 @@ cd michaelhoover
 npm install
 # Launch Local App
 ionic serve -l
-```
 
-## Before Running App
-```
-Find SRC -> Assets -> input.txt
-Replace with your desired text file
-Save
+# These steps should launch a webpage with a rendered mobile app view.
 ```
