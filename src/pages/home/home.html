@@ -7,6 +7,12 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block (click)="startProgram()">Start Cleaning</button>
-  <p>{{ printDescription }}</p>
+  <div *ngIf='!haveCleaned'>
+    <input style="margin: 14px 0" type='file' accept='text/plain' (change)='getDataFromTextFile($event)'>
+    <button ion-button block (click)="startProgram()" [disabled]='startButtonDisabled'>Start Cleaning</button>
+  </div>
+  <div *ngIf='haveCleaned'>
+    <p>{{ printDescription }}</p>
+    <button ion-button block (click)="cleanAgain()">Clean Again</button>
+  </div>
 </ion-content>

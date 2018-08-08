@@ -8,7 +8,8 @@ import _ from 'lodash';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  startButtonDisabled: boolean = true;
+  haveCleaned: boolean = false;
   textDataArray = [];
   roomSize = {x: 0, y: 0};
   startPosition = {x: 0, y: 0};
@@ -23,19 +24,25 @@ export class HomePage {
   constructor(
     private http: Http,
   ) {
-    this.getDataFromTextFile();
   }
 
   /* 
-  Gets data from the text file and splits it into an array items 
+  Gets data from uploaded text file and splits it into an array items 
   based on line break.
   */
-  getDataFromTextFile() {
-    this.http.get('./assets/dummy.text')
-    .map(res => res.text()).subscribe(data => {
-      this.textDataArray = _.split(data, '\n');
-    });
+ getDataFromTextFile(event) {
+  let file = event.target.files[0];
+  if(file && file.name.indexOf("txt") > -1) {
+    let reader = new FileReader();
+    reader.onload = () => {
+      this.textDataArray = _.split(reader.result, '\n');
+      this.startButtonDisabled = false;
+    };
+    reader.readAsText(file);
+  } else {
+    this.startButtonDisabled = true;
   }
+ }
 
   /* 
   Executed on Start Cleaning button click. Calls other functions 
@@ -45,6 +52,7 @@ export class HomePage {
     this.initializeObjects();
     this.currentPosition = _.clone(this.startPosition);
     if(this.isDirty()){this.dirtCleanedCount++};
+    this.haveCleaned = true;
     this.makeMovements();
     this.endPosition = this.currentPosition;
     this.printDescription = 'The hoover started at the x: ' + this.startPosition.x + ' y: ' + this.startPosition.y + ' position. It made ' + this.movementCount + ' movements and bumped into a wall ' + (this.movementInstructions.length - this.movementCount) + ' times. It and cleaned ' + this.dirtCleanedCount + ' dirty spot(s), and ended at the x: ' + this.endPosition.x + ' y: ' + this.endPosition.y + ' position.';
@@ -144,5 +152,14 @@ export class HomePage {
       }
     }
   }
-
+/* 
+Resets screen state and stored variables to upload file and start cleaning again.
+*/
+cleanAgain() {
+  this.startButtonDisabled = true;
+  this.textDataArray = [];
+  this.dirtCleanedCount = 0;
+  this.movementCount = 0;
+  this.haveCleaned = false;
+}
 }
