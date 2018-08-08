@@ -6,7 +6,9 @@ dirt spot coordinates, and a random set of directions this app will return
 exactly how successful our hoover was in eliminating the mess.
 
 I used an Ionic framework with the goal of scalability, cross mobile-platform 
-support, and hope of adding in UI into the application at a later point. 
+support, and hope of adding in UI elements into the application at a later point 
+(I didn't get to it for this exercise unfortunately). 
+
 These considerations for expansion are the reason for some variable artifacts
 that aren't entirely necessary for the 2 lin output requested in the coding prompt. 
 At this time, the app supports file upload and repeated cleaning simulations.
