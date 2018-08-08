@@ -13,7 +13,12 @@ These considerations for expansion are the reason for some variable artifacts
 that aren't entirely necessary for the 2 lin output requested in the coding prompt. 
 At this time, the app supports file upload and repeated cleaning simulations.
 ```
-## Command Line Prompts
+## Resources
+```
+Used cmd - 'ionic start general blank' to build base app scaffold
+Imported lodash for clone and split functions
+```
+## Command Line Prompts to Run
 ```
 # Get latest code snapshot
 git clone www.github.com/michaelychong/general.git michaelhoover
